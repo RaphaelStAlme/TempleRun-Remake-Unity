@@ -89,6 +89,6 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("After =" + targetPosition);
 
-        transform.position = targetPosition;
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);
     }
 }

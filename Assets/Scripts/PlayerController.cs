@@ -66,15 +66,8 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        Debug.Log(CurrentLane);
-        Debug.Log("Perso z = " + transform.position.z);
-        Debug.Log("Perso forward = " + transform.forward);
-        Debug.Log("Perso position y = " + transform.position.y);
-        Debug.Log("Perso up = " + transform.up);
-
         Vector3 targetPosition = (transform.position.z * transform.forward) + (transform.position.y * transform.up);
 
-        Debug.Log("Before = " + targetPosition);
 
         switch (CurrentLane)
         {
@@ -84,11 +77,10 @@ public class PlayerController : MonoBehaviour
                 break;
             case 2:
                 targetPosition += Vector3.right * laneDistance;
+                Debug.Log("targetPosition " + targetPosition);
                 break;
         }
 
-        Debug.Log("After =" + targetPosition);
-
-        transform.position = Vector3.Lerp(transform.position, targetPosition, 80 * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, 60);
     }
 }

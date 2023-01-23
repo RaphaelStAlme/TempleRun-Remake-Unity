@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private int _currentLane = 1;
     private float _gravity = 9.807f;
     private float _initialHeight;
-    private bool _isCrouched = false;
+
     public int CurrentLane
     {
         get { return _currentLane; }
@@ -44,15 +44,13 @@ public class PlayerController : MonoBehaviour
 
         if (_controller.isGrounded)
         {
-            if (_m_Jump.triggered)
+            if (_m_Jump.WasPressedThisFrame())
             {
-                Debug.Log("YESS");
                 PlayerJump();
             }
             
             if (_m_Crounch.IsPressed())
             {
-                Debug.Log("rze");
                 _controller.height = 0.5f * _initialHeight;
             }
             else
@@ -101,9 +99,11 @@ public class PlayerController : MonoBehaviour
         direction.y = jumpForce;
     }
 
-    private void PlayerCrounch()
+    private void OnControllerColliderHit(ControllerColliderHit hit) 
     {
-
+        if(hit.transform.CompareTag("Obstacle"))
+        {
+            Debug.Log("Touched");
+        }
     }
-
 }

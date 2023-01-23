@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     public float forwardSpeed = 12;
     public float laneDistance;
     public float jumpForce = 6;
-
+    public float crounchSpeed = 3;
 
     private CharacterController _controller;
     private PlayerInput _playerInput;
@@ -16,11 +16,13 @@ public class PlayerController : MonoBehaviour
     private InputAction _m_Crounch;
     private Vector3 direction;
     private int _currentLane = 1;
-    private float gravity = 9.807f;
+    private float _gravity = 9.807f;
+    private float _initialHeight;
+    private bool _isCrouched = false;
     public int CurrentLane
     {
         get { return _currentLane; }
-        set{ if (value < 0) _currentLane = 0; else if (value > 2) _currentLane = 2; else _currentLane = value;}
+        set { if (value < 0) _currentLane = 0; else if (value > 2) _currentLane = 2; else _currentLane = value; }
     } //0 = à gauche, 1= au milieu, 2= à droite
 
     // Start is called before the first frame update
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
         _m_Left = _playerInput.actions["Left"];
         _m_Right = _playerInput.actions["Right"];
         _m_Crounch = _playerInput.actions["Crounch"];
+        _initialHeight = _controller.height;
     }
 
     // Update is called once per frame
@@ -46,11 +49,22 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("YESS");
                 PlayerJump();
             }
-        } else
-        {
-            direction.y -= gravity * Time.deltaTime;
+            
+            if (_m_Crounch.IsPressed())
+            {
+                Debug.Log("rze");
+                _controller.height = 0.5f * _initialHeight;
+            }
+            else
+            {
+                _controller.height = _initialHeight;
+            }
         }
-        
+        else
+        {
+            direction.y -= _gravity * Time.deltaTime;
+        }
+
         if (_m_Left.triggered)
         {
             CurrentLane--;
@@ -59,13 +73,8 @@ public class PlayerController : MonoBehaviour
         {
             CurrentLane++;
         }
-        else if (_m_Crounch.triggered)
-        {
-
-        }
 
         Vector3 targetPosition = (transform.position.z * transform.forward) + (transform.position.y * transform.up);
-
 
         switch (CurrentLane)
         {
@@ -96,5 +105,5 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-    
+
 }

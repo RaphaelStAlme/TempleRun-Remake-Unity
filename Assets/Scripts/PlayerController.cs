@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float forwardSpeed;
+    public float forwardSpeed = 12;
     public float laneDistance;
+    public float jumpForce = 6;
 
 
     private CharacterController _controller;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private InputAction _m_Crounch;
     private Vector3 direction;
     private int _currentLane = 1;
+    private float gravity = 9.807f;
     public int CurrentLane
     {
         get { return _currentLane; }
@@ -35,25 +37,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMovement();
-
-    }
-
-    private void FixedUpdate()
-    {
-        _controller.Move(direction * Time.fixedDeltaTime);
-
-    }
-
-    private void playerMovement()
-    {
         direction.z = forwardSpeed;
 
-        if (_m_Jump.triggered)
+        if (_controller.isGrounded)
         {
-            Debug.Log("Hello");
+            if (_m_Jump.triggered)
+            {
+                Debug.Log("YESS");
+                PlayerJump();
+            }
+        } else
+        {
+            direction.y -= gravity * Time.deltaTime;
         }
-        else if (_m_Left.triggered)
+        
+        if (_m_Left.triggered)
         {
             CurrentLane--;
         }
@@ -77,10 +75,26 @@ public class PlayerController : MonoBehaviour
                 break;
             case 2:
                 targetPosition += Vector3.right * laneDistance;
-                Debug.Log("targetPosition " + targetPosition);
                 break;
         }
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, 60);
     }
+
+    private void FixedUpdate()
+    {
+        _controller.Move(direction * Time.fixedDeltaTime);
+
+    }
+
+    private void PlayerJump()
+    {
+        direction.y = jumpForce;
+    }
+
+    private void PlayerCrounch()
+    {
+
+    }
+    
 }

@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                _controller.height = _initialHeight;
+                _controller.height = Mathf.Lerp(_controller.height, _initialHeight, 5.0f * Time.deltaTime);
             }
         }
         else
@@ -104,6 +104,14 @@ public class PlayerController : MonoBehaviour
         if(hit.transform.CompareTag("Obstacle"))
         {
             Debug.Log("Touched");
+            if(GameManager.restEsquive > 0)
+            {
+                GameManager.restEsquive--;
+                hit.collider.enabled = false;
+            } else
+            {
+                GameManager.playerIsDied = true;
+            }
         }
     }
 }

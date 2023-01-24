@@ -1640,6 +1640,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 2827079464232987956, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c62f04fb281bd548a60159d863e4c3d, type: 2}
     - target: {fileID: 2827079464232987958, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: m_RootOrder
       value: 1

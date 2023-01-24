@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -101,17 +102,35 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit) 
     {
+       
         if(hit.transform.CompareTag("Obstacle"))
         {
             Debug.Log("Touched");
             if(GameManager.restEsquive > 0)
             {
                 GameManager.restEsquive--;
+                StartCoroutine(Flasher());
                 hit.collider.enabled = false;
             } else
             {
                 GameManager.playerIsDied = true;
             }
+        }
+    }
+
+    IEnumerator Flasher()
+    {
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+
+        Color normalColor = meshRenderer.material.color;
+        Color collideColor = Color.clear;
+
+        for (int i = 0; i < 5; i++)
+        {
+            meshRenderer.material.color = collideColor;
+            yield return new WaitForSeconds(.1f);
+            meshRenderer.material.color = normalColor;
+            yield return new WaitForSeconds(.1f);
         }
     }
 }

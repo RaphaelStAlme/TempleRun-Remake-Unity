@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private int _currentLane = 1;
     private float _gravity = 9.807f;
     private float _initialHeight;
-    private bool _isCrouched = false;
+
     public int CurrentLane
     {
         get { return _currentLane; }
@@ -44,20 +45,18 @@ public class PlayerController : MonoBehaviour
 
         if (_controller.isGrounded)
         {
-            if (_m_Jump.triggered)
+            if (_m_Jump.WasPressedThisFrame())
             {
-                Debug.Log("YESS");
                 PlayerJump();
             }
             
             if (_m_Crounch.IsPressed())
             {
-                Debug.Log("rze");
                 _controller.height = 0.5f * _initialHeight;
             }
             else
             {
-                _controller.height = _initialHeight;
+                _controller.height = Mathf.Lerp(_controller.height, _initialHeight, 5.0f * Time.deltaTime);
             }
         }
         else
@@ -101,9 +100,37 @@ public class PlayerController : MonoBehaviour
         direction.y = jumpForce;
     }
 
-    private void PlayerCrounch()
+    private void OnControllerColliderHit(ControllerColliderHit hit) 
     {
-
+       
+        if(hit.transform.CompareTag("Obstacle"))
+        {
+            Debug.Log("Touched");
+            if(GameManager.restEsquive > 0)
+            {
+                GameManager.restEsquive--;
+                StartCoroutine(Flasher());
+                hit.collider.enabled = false;
+            } else
+            {
+                GameManager.playerIsDied = true;
+            }
+        }
     }
 
+    IEnumerator Flasher()
+    {
+        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
+
+        Color normalColor = meshRenderer.material.color;
+        Color collideColor = Color.clear;
+
+        for (int i = 0; i < 5; i++)
+        {
+            meshRenderer.material.color = collideColor;
+            yield return new WaitForSeconds(.1f);
+            meshRenderer.material.color = normalColor;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
 }

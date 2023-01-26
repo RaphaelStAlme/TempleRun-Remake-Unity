@@ -6,16 +6,18 @@ public class TileManager : MonoBehaviour
 {
     public GameObject[] tilesPrefab;
     public Transform playerTransform;
+    
+    [SerializeField] private int numberTiles = 5;
 
     private float zSpawnedTiles = 0;
     private float generalTileLength = 30f;
-    private int numberTiles = 5;
     public List<GameObject> activeTiles= new List<GameObject>();
     // Start is called before the first frame update
     void Start()
     {
         for(int i = 0; i < numberTiles;i++) {
             if (i == 0) SpawnTile(0);
+            if (i == 6) break;
             SpawnTile(Random.Range(0, tilesPrefab.Length));
         }
     }
@@ -27,6 +29,10 @@ public class TileManager : MonoBehaviour
         Debug.Log(2 * activeTiles[0].transform.position.z);
         if (playerTransform.position.z > (activeTiles[0].transform.position.z + generalTileLength))
         {
+            if(zSpawnedTiles != (generalTileLength * numberTiles))
+            {
+                SpawnTile(Random.Range(0, tilesPrefab.Length));
+            }
             DeleteTile();
         }
         ///For infinite level

@@ -101,8 +101,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit) 
-    {
-       
+    {       
         if(hit.transform.CompareTag("Obstacle"))
         {
             Debug.Log("Touched");

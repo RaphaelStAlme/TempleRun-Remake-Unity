@@ -26,7 +26,6 @@ public class TileManager : MonoBehaviour
     void Update()
     {
         ///For easy, medium and hard level
-        Debug.Log(2 * activeTiles[0].transform.position.z);
         if (playerTransform.position.z > (activeTiles[0].transform.position.z + generalTileLength))
         {
             if (zSpawnedTiles != (generalTileLength * numberTiles))

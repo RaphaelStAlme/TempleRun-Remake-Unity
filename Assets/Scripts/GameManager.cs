@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static int restEsquive;
     public static bool playerIsDied;
-    
+    public static string score;
+
     [SerializeField] private GameObject gameOverUI;
 
     // Start is called before the first frame update
@@ -26,5 +25,5 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
 }

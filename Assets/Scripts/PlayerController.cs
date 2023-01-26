@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerJump();
             }
-            
+
             if (_m_Crounch.IsPressed())
             {
                 _controller.height = 0.5f * _initialHeight;
@@ -100,17 +100,18 @@ public class PlayerController : MonoBehaviour
         direction.y = jumpForce;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) 
-    {       
-        if(hit.transform.CompareTag("Obstacle"))
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.CompareTag("Obstacle"))
         {
             Debug.Log("Touched");
-            if(GameManager.restEsquive > 0)
+            if (GameManager.restEsquive > 0)
             {
                 GameManager.restEsquive--;
                 StartCoroutine(Flasher());
                 hit.collider.enabled = false;
-            } else
+            }
+            else
             {
                 GameManager.playerIsDied = true;
             }

@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    public GameObject finishUI;
 
     private CharacterController _controller;
     private PlayerInput _playerInput;
@@ -135,6 +135,11 @@ public class PlayerController : MonoBehaviour
             {
                 GameManager.playerIsDied = true;
             }
+        }
+
+        if (hit.transform.CompareTag("Finish"))
+        {
+            GameManager.playerReachedFinishLine = true;
         }
     }
 

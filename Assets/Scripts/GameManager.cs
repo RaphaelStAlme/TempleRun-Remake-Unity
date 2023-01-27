@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     {
         if (playerIsDied)
         {
-            Debug.Log("YES");
             Time.timeScale = 0;
             InputSystem.DisableDevice(Keyboard.current);
             gameOverUI.SetActive(true);

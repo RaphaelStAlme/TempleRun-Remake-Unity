@@ -1335,8 +1335,12 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2827079464232987915, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
+      propertyPath: gravity
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827079464232987915, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: jumpForce
-      value: 7
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2827079464232987915, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: crounchSpeed

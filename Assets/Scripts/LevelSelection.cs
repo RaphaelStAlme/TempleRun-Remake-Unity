@@ -16,7 +16,7 @@ public class LevelSelection : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
     public void SetEasyMode()
     {

@@ -4,10 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float forwardSpeed = 12;
-    public float laneDistance;
-    public float jumpForce = 6;
-    public float crounchSpeed = 3;
+    public GameObject finishUI;
 
     private CharacterController _controller;
     private PlayerInput _playerInput;
@@ -15,9 +12,12 @@ public class PlayerController : MonoBehaviour
     private InputAction _m_Left;
     private InputAction _m_Right;
     private InputAction _m_Crounch;
+    private float _laneDistance;
+    private float _jumpForce;
+    public float _gravity;
     private Vector3 direction;
+    private float _forwardSpeed;
     private int _currentLane = 1;
-    private float _gravity = 9.807f;
     private float _initialHeight;
 
     public int CurrentLane
@@ -36,12 +36,32 @@ public class PlayerController : MonoBehaviour
         _m_Right = _playerInput.actions["Right"];
         _m_Crounch = _playerInput.actions["Crounch"];
         _initialHeight = _controller.height;
+
+        _laneDistance = 2.5f;
+        _jumpForce = 14f;
+        _gravity = 30f;
+
+        switch (LevelSelection.currentLevel)
+        {
+            case LevelSelection.LevelSelector.Easy:
+                _forwardSpeed = 30;
+                break;
+            case LevelSelection.LevelSelector.Medium:
+                _forwardSpeed = 40;
+                break;
+            case LevelSelection.LevelSelector.Hard:
+                _forwardSpeed = 50;
+                break;
+            case LevelSelection.LevelSelector.Infinite:
+                _forwardSpeed = 30;
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction.z = forwardSpeed;
+        direction.z = _forwardSpeed;
 
         if (_controller.isGrounded)
         {
@@ -49,7 +69,7 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerJump();
             }
-            
+
             if (_m_Crounch.IsPressed())
             {
                 _controller.height = 0.5f * _initialHeight;
@@ -79,10 +99,10 @@ public class PlayerController : MonoBehaviour
         {
 
             case 0:
-                targetPosition += Vector3.left * laneDistance;
+                targetPosition += Vector3.left * _laneDistance;
                 break;
             case 2:
-                targetPosition += Vector3.right * laneDistance;
+                targetPosition += Vector3.right * _laneDistance;
                 break;
         }
 
@@ -97,23 +117,29 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerJump()
     {
-        direction.y = jumpForce;
+        direction.y = _jumpForce;
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) 
-    {       
-        if(hit.transform.CompareTag("Obstacle"))
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.CompareTag("Obstacle"))
         {
             Debug.Log("Touched");
-            if(GameManager.restEsquive > 0)
+            if (GameManager.restEsquive > 0)
             {
                 GameManager.restEsquive--;
                 StartCoroutine(Flasher());
                 hit.collider.enabled = false;
-            } else
+            }
+            else
             {
                 GameManager.playerIsDied = true;
             }
+        }
+
+        if (hit.transform.CompareTag("Finish"))
+        {
+            GameManager.playerReachedFinishLine = true;
         }
     }
 

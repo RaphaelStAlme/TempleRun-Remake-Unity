@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject levelSelectorPanel;
+    public GameObject settingsPanel;
+    public GameObject scorePanel;
+
+    public void SetLevelSelectorPanel()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        levelSelectorPanel.SetActive(true);
     }
 }

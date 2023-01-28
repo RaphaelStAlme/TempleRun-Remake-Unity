@@ -13,7 +13,6 @@ public class ScoreManager : MonoBehaviour
     //[SerializeField] private TextMeshPro highScoreTxt;
 
     float score = 0;
-    int highScore = 0;
     int pointIncreasedPerSecond = 10;
 
     private void Awake()
@@ -37,17 +36,24 @@ public class ScoreManager : MonoBehaviour
         {
             if((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
             {
-
-                HighScoreElement highScore = new HighScoreElement
+                var highScore = HighScoreManager.instance.GetTemporaryHighScore() != null ? HighScoreManager.instance.GetTemporaryHighScore() : 0;
+                Debug.Log(highScore);
+                if(score > highScore)
                 {
-                    // TODO : Faire une comparaison pour voir si le pseudo est renseigné
-                    playerName = "Anonymous",
-                    score = score.ToString()
-                };
+                    highScore = (int) score;
+                    HighScoreElement highScoreElement = new HighScoreElement
+                    {
+                        // TODO : Faire une comparaison pour voir si le pseudo est renseigné
+                        playerName = "Anonymous",
+                        score = (int) highScore,
+                        levelSelection = LevelSelection.currentLevel
+                       
+                    };
 
-                HighScoreManager.instance.SaveHighScore(highScore);
-
-                highScoreSaved = true;
+                    HighScoreManager.instance.SaveHighScore(highScoreElement);
+                    highScoreSaved = true;
+                    
+                }
             }
         }
     }

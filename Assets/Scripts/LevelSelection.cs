@@ -3,16 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelection : MonoBehaviour
 {
-    public enum LevelSelector
-    {
-        Easy,
-        Medium,
-        Hard,
-        Infinite
-    }
-
-    [SerializeField] public static LevelSelector currentLevel;
-
+    public static LevelSelector currentLevel;
 
     private void Start()
     {
@@ -50,4 +41,12 @@ public class LevelSelection : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+}
+
+public enum LevelSelector
+{
+    Easy,
+    Medium,
+    Hard,
+    Infinite
 }

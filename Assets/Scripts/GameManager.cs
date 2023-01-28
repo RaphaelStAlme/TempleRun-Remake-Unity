@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         ///Revoir pour la réinitialisation de  la vie pour l'appliquer dans le script du joueur
         panelUI.SetActive(false);
+        HighScoreManager.instance.ResetTemporaryHighScore();  
         Resume();
         SceneManager.LoadScene("Menu");
     }

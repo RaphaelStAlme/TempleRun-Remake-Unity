@@ -35,9 +35,25 @@ public class HighScoreManager : MonoBehaviour
 
     public void SaveHighScore(HighScoreElement highScore)
     {
+        SaveTemporaryHighScore(highScore.score);
         highScores.highScoreElements.Add(highScore);
         var jsonList = JsonUtility.ToJson(highScores);
         File.WriteAllText(saveFile, jsonList);
+    }
+
+    public int? GetTemporaryHighScore()
+    {
+        return PlayerPrefs.GetInt("highScore");
+    }
+
+    public void SaveTemporaryHighScore(int score)
+    {
+        PlayerPrefs.SetInt("highScore", score);
+    }
+
+    public void ResetTemporaryHighScore()
+    {
+        PlayerPrefs.DeleteKey("highScore");
     }
 }
 
@@ -51,5 +67,6 @@ public class HighScoreElements
 public class HighScoreElement
 {
     public string playerName;
-    public string score;
+    public int score;
+    public LevelSelector levelSelection;
 }

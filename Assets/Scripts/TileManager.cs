@@ -30,7 +30,7 @@ public class TileManager : MonoBehaviour
     void Update()
     {
         ///For easy, medium and hard level
-        if (LevelSelection.currentLevel != LevelSelection.LevelSelector.Infinite)
+        if (LevelSelection.currentLevel != LevelSelector.Infinite)
         {
             if (playerTransform.position.z > (activeTiles[0].transform.position.z + generalTileLength))
             {

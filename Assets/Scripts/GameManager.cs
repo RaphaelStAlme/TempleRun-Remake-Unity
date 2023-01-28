@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
     public static int restEsquive;
     public static bool playerIsDied;
     public static bool playerReachedFinishLine;
-    public static int score;
 
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject finishUI;
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     {
         ///Revoir pour la réinitialisation de  la vie pour l'appliquer dans le script du joueur
         panelUI.SetActive(false);
+        HighScoreManager.instance.ResetTemporaryHighScore();  
         Resume();
         SceneManager.LoadScene("Menu");
     }

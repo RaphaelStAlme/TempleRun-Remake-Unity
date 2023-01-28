@@ -43,16 +43,16 @@ public class PlayerController : MonoBehaviour
 
         switch (LevelSelection.currentLevel)
         {
-            case LevelSelection.LevelSelector.Easy:
+            case LevelSelector.Easy:
                 _forwardSpeed = 30;
                 break;
-            case LevelSelection.LevelSelector.Medium:
+            case LevelSelector.Medium:
                 _forwardSpeed = 40;
                 break;
-            case LevelSelection.LevelSelector.Hard:
+            case LevelSelector.Hard:
                 _forwardSpeed = 50;
                 break;
-            case LevelSelection.LevelSelector.Infinite:
+            case LevelSelector.Infinite:
                 _forwardSpeed = 30;
                 break;
         }

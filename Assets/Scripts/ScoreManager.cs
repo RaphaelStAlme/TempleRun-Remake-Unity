@@ -7,8 +7,10 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
+    public bool highScoreSaved = false;
+
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    [SerializeField] private TextMeshPro highScoreTxt;
+    //[SerializeField] private TextMeshPro highScoreTxt;
 
     float score = 0;
     int highScore = 0;
@@ -33,26 +35,19 @@ public class ScoreManager : MonoBehaviour
             AddPoints(pointIncreasedPerSecond * Time.fixedDeltaTime);
         } else
         {
-            if(GameManager.playerIsDied || GameManager.playerReachedFinishLine)
+            if((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
             {
-                if (PlayerPrefs.HasKey("hiScore"))
-{
-                    if (score > PlayerPrefs.GetInt("hiScore"))
-                    {
-                        highScore = (int) score;
-                        PlayerPrefs.SetInt("hiScore", highScore);
-                        PlayerPrefs.Save();
-                    }
-                }
-                else
+
+                HighScoreElement highScore = new HighScoreElement
                 {
-                    if (score > highScore)
-                    {
-                        highScore = (int) score;
-                        PlayerPrefs.SetInt("hiScore", highScore);
-                        PlayerPrefs.Save();
-                    }
-                }
+                    // TODO : Faire une comparaison pour voir si le pseudo est renseigné
+                    playerName = "Anonymous",
+                    score = score.ToString()
+                };
+
+                HighScoreManager.instance.SaveHighScore(highScore);
+
+                highScoreSaved = true;
             }
         }
     }

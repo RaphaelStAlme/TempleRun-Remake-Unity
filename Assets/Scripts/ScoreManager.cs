@@ -31,6 +31,29 @@ public class ScoreManager : MonoBehaviour
         if(Time.timeScale != 0)
         {
             AddPoints(pointIncreasedPerSecond * Time.fixedDeltaTime);
+        } else
+        {
+            if(GameManager.playerIsDied || GameManager.playerReachedFinishLine)
+            {
+                if (PlayerPrefs.HasKey("hiScore"))
+{
+                    if (score > PlayerPrefs.GetInt("hiScore"))
+                    {
+                        highScore = (int) score;
+                        PlayerPrefs.SetInt("hiScore", highScore);
+                        PlayerPrefs.Save();
+                    }
+                }
+                else
+                {
+                    if (score > highScore)
+                    {
+                        highScore = (int) score;
+                        PlayerPrefs.SetInt("hiScore", highScore);
+                        PlayerPrefs.Save();
+                    }
+                }
+            }
         }
     }
 

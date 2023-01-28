@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -38,7 +41,8 @@ public class TileManager : MonoBehaviour
                 DeleteTile();
             }
 
-            if(activeTiles.Count == 3)
+
+            if (activeTiles.Count == 3 && activeTiles[activeTiles.Count - 1].tag != "Finish")
             {
                 SpawnFinishTile();
             }
@@ -62,6 +66,7 @@ public class TileManager : MonoBehaviour
 
     private void SpawnFinishTile() {
         GameObject cloneFinishTile = Instantiate(finishPrefab, transform.forward * zSpawnedTiles, transform.rotation);
+        activeTiles.Add(cloneFinishTile);
     }
 
     private void DeleteTile()

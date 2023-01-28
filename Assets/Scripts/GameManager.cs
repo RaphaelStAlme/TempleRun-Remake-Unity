@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public static int restEsquive;
     public static bool playerIsDied;
     public static bool playerReachedFinishLine;
-    public static int score;
 
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject finishUI;

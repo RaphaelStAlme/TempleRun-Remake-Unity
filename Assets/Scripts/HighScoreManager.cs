@@ -41,7 +41,7 @@ public class HighScoreManager : MonoBehaviour
         File.WriteAllText(saveFile, jsonList);
     }
 
-    public int? GetTemporaryHighScore()
+    public int GetTemporaryHighScore()
     {
         return PlayerPrefs.GetInt("highScore");
     }

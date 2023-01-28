@@ -10,7 +10,7 @@ public class ScoreManager : MonoBehaviour
     public bool highScoreSaved = false;
 
     [SerializeField] private TextMeshProUGUI scoreTxt;
-    //[SerializeField] private TextMeshPro highScoreTxt;
+    [SerializeField] private TextMeshProUGUI highScoreTxt;
 
     float score = 0;
     int pointIncreasedPerSecond = 10;
@@ -36,20 +36,19 @@ public class ScoreManager : MonoBehaviour
         {
             if((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
             {
-                var highScore = HighScoreManager.instance.GetTemporaryHighScore() != null ? HighScoreManager.instance.GetTemporaryHighScore() : 0;
-                Debug.Log(highScore);
-                if(score > highScore)
+                var highScore = HighScoreManager.instance.GetTemporaryHighScore();
+                highScoreTxt.text = highScore.ToString();
+                if (score > highScore)
                 {
                     highScore = (int) score;
                     HighScoreElement highScoreElement = new HighScoreElement
                     {
                         // TODO : Faire une comparaison pour voir si le pseudo est renseigné
                         playerName = "Anonymous",
-                        score = (int) highScore,
+                        score = highScore,
                         levelSelection = LevelSelection.currentLevel
                        
                     };
-
                     HighScoreManager.instance.SaveHighScore(highScoreElement);
                     highScoreSaved = true;
                     

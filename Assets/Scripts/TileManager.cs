@@ -4,6 +4,7 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     public GameObject[] tilesPrefab;
+    public GameObject finishPrefab;
     public Transform playerTransform;
 
     [SerializeField] private int numberTiles = 5;
@@ -26,20 +27,30 @@ public class TileManager : MonoBehaviour
     void Update()
     {
         ///For easy, medium and hard level
-        if (playerTransform.position.z > (activeTiles[0].transform.position.z + generalTileLength))
+        if (LevelSelection.currentLevel != LevelSelection.LevelSelector.Infinite)
         {
-            if (zSpawnedTiles != (generalTileLength * numberTiles))
+            if (playerTransform.position.z > (activeTiles[0].transform.position.z + generalTileLength))
             {
-                SpawnTile(Random.Range(0, tilesPrefab.Length));
+                if (zSpawnedTiles != (generalTileLength * numberTiles))
+                {
+                    SpawnTile(Random.Range(0, tilesPrefab.Length));
+                }
+                DeleteTile();
             }
-            DeleteTile();
+
+            if(activeTiles.Count == 3)
+            {
+                SpawnFinishTile();
+            }
         }
-        ///For infinite level
-        /*Debug.Log("DEBUG = " + (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength)));
-        if (playerTransform.position.z -35 > zSpawnedTiles - (numberTiles * generalTileLength))
+        else
         {
-            DeleteTile();
-        }*/
+            Debug.Log("DEBUG = " + (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength)));
+            if (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength))
+            {
+                DeleteTile();
+            }
+        }
     }
 
     private void SpawnTile(int tileIndex)
@@ -47,6 +58,10 @@ public class TileManager : MonoBehaviour
         GameObject cloneTile = Instantiate(tilesPrefab[tileIndex], transform.forward * zSpawnedTiles, transform.rotation);
         activeTiles.Add(cloneTile);
         zSpawnedTiles += generalTileLength;
+    }
+
+    private void SpawnFinishTile() {
+        GameObject cloneFinishTile = Instantiate(finishPrefab, transform.forward * zSpawnedTiles, transform.rotation);
     }
 
     private void DeleteTile()

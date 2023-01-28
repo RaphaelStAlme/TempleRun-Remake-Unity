@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         restEsquive = 1;
         playerIsDied = false;
         playerReachedFinishLine = false;
+        InputSystem.EnableDevice(Keyboard.current);
     }
 
     // Update is called once per frame
@@ -27,7 +28,8 @@ public class GameManager : MonoBehaviour
         {
             StopGame();
             gameOverUI.SetActive(true);
-        } else if(playerReachedFinishLine)
+        }
+        else if (playerReachedFinishLine)
         {
             StopGame();
             finishUI.SetActive(true);
@@ -45,6 +47,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         restEsquive = 1;
         playerIsDied = false;
+        playerReachedFinishLine = false;
         InputSystem.EnableDevice(Keyboard.current);
     }
 

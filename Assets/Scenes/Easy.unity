@@ -178,6 +178,7 @@ MonoBehaviour:
   - {fileID: 4544005579677711614, guid: e0033baa6b8ada641abed95dd957bbf1, type: 3}
   - {fileID: 6447707122700569727, guid: bf24d9a0d34e49e468a9aebac937c572, type: 3}
   - {fileID: 1987693011108876123, guid: 4e26cb544a893784682e6b496e30e3ca, type: 3}
+  finishPrefab: {fileID: 9023382986078374868, guid: d0f59f19d93d5c1439d1f697501f9488, type: 3}
   playerTransform: {fileID: 1249471903}
   numberTiles: 10
   activeTiles: []

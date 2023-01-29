@@ -132,7 +132,6 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.CompareTag("Obstacle"))
         {
-            Debug.Log("Touched");
             if (GameManager.restEsquive > 0)
             {
                 GameManager.restEsquive--;

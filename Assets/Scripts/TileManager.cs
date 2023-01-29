@@ -46,9 +46,9 @@ public class TileManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG = " + (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength)));
-            if (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength))
+            if (playerTransform.position.z - 200 > zSpawnedTiles - (numberTiles * generalTileLength))
             {
+                SpawnTile(Random.Range(0, tilesPrefab.Length));
                 DeleteTile();
             }
         }
@@ -69,7 +69,6 @@ public class TileManager : MonoBehaviour
 
     private void DeleteTile()
     {
-        Debug.Log(activeTiles[0]);
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
     }

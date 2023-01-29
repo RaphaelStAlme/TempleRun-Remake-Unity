@@ -4,8 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject finishUI;
-
     private CharacterController _controller;
     private PlayerInput _playerInput;
     private InputAction _m_Jump;
@@ -57,7 +55,7 @@ public class PlayerController : MonoBehaviour
                 _forwardSpeed = 30;
                 break;
         }
-       
+
     }
 
     // Update is called once per frame

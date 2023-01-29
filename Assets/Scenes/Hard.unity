@@ -206,11 +206,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 150860639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 959c38b24c24c79419b443d084ae2629, type: 3}
+  m_Script: {fileID: 11500000, guid: 3149f5c117f6d0748b3273f6f94f359f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   highScores:
-    highScoreElements: []
+    highScoresList: []
 --- !u!1 &585175246
 GameObject:
   m_ObjectHideFlags: 0

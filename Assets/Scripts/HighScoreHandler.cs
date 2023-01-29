@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class HighScoreManager : MonoBehaviour
+public class HighScoreHandler : MonoBehaviour
 {
-    public static HighScoreManager instance;
+    public static HighScoreHandler instance;
 
     public HighScoreElements highScores = new HighScoreElements();
     private String saveFile;
@@ -29,8 +28,8 @@ public class HighScoreManager : MonoBehaviour
 
     public void LoadHighScores()
     {
-        if(File.Exists(saveFile)) {
-            Debug.Log(saveFile);
+        if (File.Exists(saveFile))
+        {
             string json = File.ReadAllText(saveFile);
             var highScoreNonSorted = JsonUtility.FromJson<HighScoreElements>(json);
             highScoreNonSorted.highScoresList.Sort((highScore1, highScore2) => highScore1.score.CompareTo(highScore2.score));
@@ -38,9 +37,8 @@ public class HighScoreManager : MonoBehaviour
             highScores = highScoreNonSorted;
         }
 
-        Debug.Log(highScores.highScoresList);
-
-        if(onHighScoreListChanged != null) {
+        if (onHighScoreListChanged != null)
+        {
             onHighScoreListChanged.Invoke(highScores);
         }
     }

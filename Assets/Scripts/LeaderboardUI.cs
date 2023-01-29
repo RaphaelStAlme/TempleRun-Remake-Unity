@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LeaderboardUI : MonoBehaviour
 {
@@ -14,12 +12,12 @@ public class LeaderboardUI : MonoBehaviour
 
     private void OnEnable()
     {
-        HighScoreManager.onHighScoreListChanged += UpdateUI;
+        HighScoreHandler.onHighScoreListChanged += UpdateUI;
     }
 
     private void OnDisable()
     {
-        HighScoreManager.onHighScoreListChanged -= UpdateUI;
+        HighScoreHandler.onHighScoreListChanged -= UpdateUI;
     }
 
     public void ShowPanel()
@@ -34,11 +32,12 @@ public class LeaderboardUI : MonoBehaviour
 
     public void UpdateUI(HighScoreElements highScoreElements)
     {
-        for(int i = 0; i < highScoreElements.highScoresList.Count; i++) { 
+        for (int i = 0; i < highScoreElements.highScoresList.Count; i++)
+        {
             HighScoreElement el = highScoreElements.highScoresList[i];
-            if(el.score > 0)
+            if (el.score > 0)
             {
-                if(i >= uiElements.Count)
+                if (i >= uiElements.Count)
                 {
                     var cloneHighScoreElement = Instantiate(highScoreUIElementPrefab, Vector3.zero, Quaternion.identity);
                     cloneHighScoreElement.transform.SetParent(elementWrapper);

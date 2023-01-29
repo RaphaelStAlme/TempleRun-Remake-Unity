@@ -416,6 +416,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1591059474790038773, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 150860644}
+    - target: {fileID: 1591059474790038773, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Retry
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591059475266058363, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 150860644}
+    - target: {fileID: 1591059475266058363, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591059475790351358, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 150860644}
+    - target: {fileID: 1591059475790351358, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Quit
+      objectReference: {fileID: 0}
     - target: {fileID: 1591059475837925345, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
       propertyPath: m_Name
       value: CanvasGame
@@ -503,6 +527,14 @@ PrefabInstance:
     - target: {fileID: 1591059475837925349, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591059476468065475, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 150860644}
+    - target: {fileID: 1591059476468065475, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Retry
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}

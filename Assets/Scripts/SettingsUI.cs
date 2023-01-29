@@ -14,8 +14,9 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] TMP_InputField playerNameField;
     [SerializeField] InputActionAsset inputActionAsset;
+    [SerializeField] TMP_Dropdown dropdown;
 
-    private List<InputControlScheme> controlSchemes;
+    List<InputControlScheme> inputControlSchemes = new List<InputControlScheme>();
 
     private void Awake()
     {
@@ -31,7 +32,12 @@ public class SettingsUI : MonoBehaviour
         }
     }
 
-    public void GetPseudoInputText()
+    public void GetCurrentControlSchemeDropdown()
+    {
+        dropdown.value = inputControlSchemes[0].name == GetCurrentControlScheme() ? 0 : 1;
+    }
+
+    public void GetCurrentPseudoInputText()
     {
         playerNameField.text = GetPseudo();
     }
@@ -43,10 +49,10 @@ public class SettingsUI : MonoBehaviour
 
     public void GetControlSchemes()
     {
-        controlSchemes = inputActionAsset.controlSchemes.ToList();
-        foreach(var controlScheme in controlSchemes)
+        inputControlSchemes = inputActionAsset.controlSchemes.ToList();
+        foreach(var controlScheme in inputControlSchemes)
         {
-            Debug.Log(controlScheme.name);
+            dropdown.options.Add(new TMP_Dropdown.OptionData(controlScheme.name));
         }
     }
 
@@ -55,9 +61,9 @@ public class SettingsUI : MonoBehaviour
         return PlayerPrefs.GetString("currentControlScheme");
     }
 
-    public void SetControlScheme(InputControlScheme controlScheme)
+    public void SetControlScheme(int indexControlScheme)
     {
-        PlayerPrefs.SetString("currentControlScheme", controlScheme.name);
+        PlayerPrefs.SetString("currentControlScheme", inputControlSchemes[indexControlScheme].name);
     }
 
     public void ResetScores()
@@ -68,7 +74,8 @@ public class SettingsUI : MonoBehaviour
     public void ShowPanel()
     {
         panel.SetActive(true);
-        GetPseudoInputText();
+        GetCurrentPseudoInputText();
+        GetCurrentControlSchemeDropdown();
     }
 
     public void ClosePanel()

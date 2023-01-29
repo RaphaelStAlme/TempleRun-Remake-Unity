@@ -58,6 +58,14 @@ public class HighScoreManager : MonoBehaviour
         }
     }
 
+    public void ResetScores()
+    {
+        if (File.Exists(saveFile))
+        {
+            File.Delete(saveFile);
+        }
+    }
+
     public int GetTemporaryHighScore()
     {
         return PlayerPrefs.GetInt("highScore");

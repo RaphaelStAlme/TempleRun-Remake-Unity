@@ -8,7 +8,7 @@ public class Bonus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SelectRandomBonusType();
+        InitBonusType();
     }
 
     // Update is called once per frame
@@ -37,17 +37,17 @@ public class Bonus : MonoBehaviour
                     ScoreManager.instance.AddPoints(500);
                     break;
                 case BonusType.DarkDiamond:
-                    ScoreManager.instance.AddPoints(500);
+                    ScoreManager.instance.AddPoints(-500);
                     break;
             }
             Destroy(gameObject);
         }
     }
 
-    private void SelectRandomBonusType()
+    private void InitBonusType()
     {
         var renderer = gameObject.GetComponent<Renderer>();
-        int selectedBonus = Random.Range(0, bonusMaterials.Length - 1);
+        int selectedBonus = GetRandomBonus();
         renderer.material = bonusMaterials[selectedBonus];
 
         switch (selectedBonus)
@@ -68,6 +68,34 @@ public class Bonus : MonoBehaviour
                 bonusType = BonusType.DarkDiamond;
                 break;
         }
+    }
+
+    private int GetRandomBonus()
+    {
+        float rand = Random.value;
+        Debug.Log(rand);
+        int selectedBonus = 0;
+        if(rand <= 0.8f)
+        {
+            selectedBonus = 1;
+        }
+        
+        if (rand <= 0.14f)
+        {
+            selectedBonus = 2;
+        } 
+        
+        if (rand <= 0.05f)
+        {
+            selectedBonus = 3;
+        } 
+        
+        if (rand <= 0.005f)
+        {
+            selectedBonus = 5;
+            Debug.Log(selectedBonus);
+        }
+        return selectedBonus;
     }
 }
 

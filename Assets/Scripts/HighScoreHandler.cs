@@ -62,6 +62,11 @@ public class HighScoreHandler : MonoBehaviour
         {
             File.Delete(saveFile);
         }
+
+        if (onHighScoreListChanged != null)
+        {
+            onHighScoreListChanged.Invoke(highScores);
+        }
     }
 
     public int GetTemporaryHighScore()

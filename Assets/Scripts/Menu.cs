@@ -10,4 +10,9 @@ public class Menu : MonoBehaviour
     {
         levelSelectorPanel.SetActive(true);
     }
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
+    }
 }

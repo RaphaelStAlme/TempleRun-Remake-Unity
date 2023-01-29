@@ -12,6 +12,7 @@ public class TileManager : MonoBehaviour
     private float zSpawnedTiles = 0;
     private float generalTileLength = 30f;
     public List<GameObject> activeTiles = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,6 @@ public class TileManager : MonoBehaviour
                 DeleteTile();
             }
 
-
             if (activeTiles.Count == 3 && activeTiles[activeTiles.Count - 1].tag != "Finish")
             {
                 SpawnFinishTile();
@@ -46,9 +46,10 @@ public class TileManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("DEBUG = " + (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength)));
-            if (playerTransform.position.z - 35 > zSpawnedTiles - (numberTiles * generalTileLength))
+            if (playerTransform.position.z - 200 > zSpawnedTiles - (numberTiles * generalTileLength))
             {
+                SpawnTile(Random.Range(0, tilesPrefab.Length));
+               
                 DeleteTile();
             }
         }
@@ -69,7 +70,6 @@ public class TileManager : MonoBehaviour
 
     private void DeleteTile()
     {
-        Debug.Log(activeTiles[0]);
         Destroy(activeTiles[0]);
         activeTiles.RemoveAt(0);
     }

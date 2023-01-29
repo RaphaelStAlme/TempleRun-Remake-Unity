@@ -1538,7 +1538,6 @@ GameObject:
   - component: {fileID: 307709202}
   - component: {fileID: 307709201}
   - component: {fileID: 307709200}
-  - component: {fileID: 307709203}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -1636,21 +1635,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &307709203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 307709198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c882d6a37d95b1b45a5799d45be0d2ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelSelectorPanel: {fileID: 188556786}
-  settingsPanel: {fileID: 0}
-  scorePanel: {fileID: 0}
 --- !u!1 &328766267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7365908531423533415, guid: 12568a5f15eefc84688d7e1b8755f45f, type: 3}
@@ -2163,13 +2147,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1468433194}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1468433202}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: OnApplicationQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5924,7 +5908,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 307709203}
+      - m_Target: {fileID: 1468433202}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: SetLevelSelectorPanel
         m_Mode: 1
@@ -6256,6 +6240,7 @@ GameObject:
   - component: {fileID: 1468433199}
   - component: {fileID: 1468433200}
   - component: {fileID: 1468433201}
+  - component: {fileID: 1468433202}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -6323,6 +6308,21 @@ MonoBehaviour:
   playerNameField: {fileID: 219060728}
   inputActionAsset: {fileID: -944628639613478452, guid: 68f58c50232c2b545a923f2fb65455ef, type: 3}
   dropdown: {fileID: 528255606}
+--- !u!114 &1468433202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468433194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c882d6a37d95b1b45a5799d45be0d2ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSelectorPanel: {fileID: 188556786}
+  settingsPanel: {fileID: 0}
+  scorePanel: {fileID: 0}
 --- !u!1 &1502402607
 GameObject:
   m_ObjectHideFlags: 0

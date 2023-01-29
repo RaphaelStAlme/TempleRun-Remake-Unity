@@ -73,9 +73,10 @@ public class Bonus : MonoBehaviour
     private int GetRandomBonus()
     {
         float rand = Random.value;
-        Debug.Log(rand);
+
         int selectedBonus = 0;
-        if(rand <= 0.8f)
+
+        if (rand <= 0.8f)
         {
             selectedBonus = 1;
         }
@@ -92,9 +93,9 @@ public class Bonus : MonoBehaviour
         
         if (rand <= 0.005f)
         {
-            selectedBonus = 5;
-            Debug.Log(selectedBonus);
+            selectedBonus = Mathf.RoundToInt(Random.Range(4.0f, 5.0f));
         }
+
         return selectedBonus;
     }
 }

@@ -14,15 +14,22 @@ public class PlayerController : MonoBehaviour
     private float _jumpForce;
     public float _gravity;
     private Vector3 direction;
+    private float _startSpeed;
     private float _forwardSpeed;
+    private float _trackedDistance;
     private int _currentLane = 1;
     private float _initialHeight;
+
+    private float trackedDistance = 0;
 
     public int CurrentLane
     {
         get { return _currentLane; }
         set { if (value < 0) _currentLane = 0; else if (value > 2) _currentLane = 2; else _currentLane = value; }
     } //0 = à gauche, 1= au milieu, 2= à droite
+
+    public delegate void OnTileGenerated();
+    public static event OnTileGenerated onTileGenerated;
 
     // Start is called before the first frame update
     void Start()
@@ -43,16 +50,16 @@ public class PlayerController : MonoBehaviour
         switch (LevelSelection.currentLevel)
         {
             case LevelSelector.Easy:
-                _forwardSpeed = 30;
+                _startSpeed = 30;
                 break;
             case LevelSelector.Medium:
-                _forwardSpeed = 40;
+                _startSpeed = 40;
                 break;
             case LevelSelector.Hard:
-                _forwardSpeed = 50;
+                _startSpeed = 50;
                 break;
             case LevelSelector.Infinite:
-                _forwardSpeed = 30;
+                _startSpeed = 30;
                 break;
         }
 
@@ -61,6 +68,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelSelection.currentLevel == LevelSelector.Infinite)
+        {
+            Debug.Log(_forwardSpeed);
+            _forwardSpeed = (float)(_startSpeed + (int)(trackedDistance / 100) * 0.5);
+            trackedDistance += _forwardSpeed * Time.deltaTime;
+        } else
+        {
+            _forwardSpeed = _startSpeed;
+        }
+
         direction.z = _forwardSpeed;
 
         if (_controller.isGrounded)
@@ -107,6 +124,8 @@ public class PlayerController : MonoBehaviour
         }
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, 60);
+
+        
     }
 
     private void FixedUpdate()

@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Bonus : MonoBehaviour
 {
+    [SerializeField] Material[] bonusMaterials;
     [SerializeField] BonusType bonusType;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        SelectRandomBonusType();
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class Bonus : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Debug.Log(bonusType);
             switch (bonusType)
             {
                 case BonusType.Coin:
@@ -41,13 +43,40 @@ public class Bonus : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void SelectRandomBonusType()
+    {
+        var renderer = gameObject.GetComponent<Renderer>();
+        int selectedBonus = Random.Range(0, bonusMaterials.Length - 1);
+        renderer.material = bonusMaterials[selectedBonus];
+
+        switch (selectedBonus)
+        {
+            case 1:
+                bonusType = BonusType.Coin;
+                break;
+            case 2:
+                bonusType = BonusType.Emerald;
+                break;
+            case 3:
+                bonusType = BonusType.Ruby;
+                break;
+            case 4:
+                bonusType = BonusType.Diamond;
+                break;
+            case 5:
+                bonusType = BonusType.DarkDiamond;
+                break;
+        }
+    }
 }
 
-public enum BonusType
-{
-    Coin,
-    Emerald,
-    Ruby,
-    Diamond,
-    DarkDiamond,
-}
+    public enum BonusType
+    {
+        Void,
+        Coin,
+        Emerald,
+        Ruby,
+        Diamond,
+        DarkDiamond,
+    }

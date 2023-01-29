@@ -44,8 +44,9 @@ GameObject:
   - component: {fileID: 3760654448106675163}
   - component: {fileID: 6324224516299657807}
   - component: {fileID: 1000168965966477508}
+  - component: {fileID: 5721753568368294316}
   m_Layer: 0
-  m_Name: EmptyBonus
+  m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,7 +94,8 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: e6b4c1a0afb59c946a2e8a79456ca033, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,3 +131,23 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &5721753568368294316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744447499875683530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce7b1cfe6bf4eb43ae0fed531c90917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonusMaterials:
+  - {fileID: 2100000, guid: e6b4c1a0afb59c946a2e8a79456ca033, type: 2}
+  - {fileID: 2100000, guid: c1abdedec78aba24584cf19bc4e9a6f3, type: 2}
+  - {fileID: 2100000, guid: 7fabb3988d003d54c91d0571598332e1, type: 2}
+  - {fileID: 2100000, guid: 88287ac61591ed7408ef9615678c2fd4, type: 2}
+  - {fileID: 2100000, guid: 28088e89f6305f646b674dff010ade6f, type: 2}
+  - {fileID: 2100000, guid: b9d7d9f041815574283d3a294caa3da8, type: 2}
+  bonusType: 0

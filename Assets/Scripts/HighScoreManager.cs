@@ -32,7 +32,10 @@ public class HighScoreManager : MonoBehaviour
         if(File.Exists(saveFile)) {
             Debug.Log(saveFile);
             string json = File.ReadAllText(saveFile);
-            highScores = JsonUtility.FromJson<HighScoreElements>(json); 
+            var highScoreNonSorted = JsonUtility.FromJson<HighScoreElements>(json);
+            highScoreNonSorted.highScoresList.Sort((highScore1, highScore2) => highScore1.score.CompareTo(highScore2.score));
+            highScoreNonSorted.highScoresList.Reverse();
+            highScores = highScoreNonSorted;
         }
 
         Debug.Log(highScores.highScoresList);

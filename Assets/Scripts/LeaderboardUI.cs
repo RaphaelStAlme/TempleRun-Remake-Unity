@@ -36,8 +36,6 @@ public class LeaderboardUI : MonoBehaviour
     {
         for(int i = 0; i < highScoreElements.highScoresList.Count; i++) { 
             HighScoreElement el = highScoreElements.highScoresList[i];
-            Debug.Log(el.playerName);
-
             if(el.score > 0)
             {
                 if(i >= uiElements.Count)
@@ -47,7 +45,6 @@ public class LeaderboardUI : MonoBehaviour
                     uiElements.Add(cloneHighScoreElement);
                 }
                 var texts = uiElements[i].GetComponentsInChildren<TextMeshProUGUI>();
-                Debug.Log(texts);
                 texts[0].text = el.playerName;
                 texts[1].text = el.score.ToString();
                 texts[2].text = el.levelSelection.ToString();

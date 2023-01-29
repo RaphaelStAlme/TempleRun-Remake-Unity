@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
+        attributeScheme();
         _m_Jump = _playerInput.actions["Jump"];
         _m_Left = _playerInput.actions["Left"];
         _m_Right = _playerInput.actions["Right"];
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
                 _forwardSpeed = 30;
                 break;
         }
+       
     }
 
     // Update is called once per frame
@@ -112,6 +114,14 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _controller.Move(direction * Time.fixedDeltaTime);
+
+    }
+
+    void attributeScheme()
+    {
+
+        _playerInput.SwitchCurrentControlScheme(SettingsUI.instance.GetCurrentControlScheme(), Keyboard.current);
+
 
     }
 

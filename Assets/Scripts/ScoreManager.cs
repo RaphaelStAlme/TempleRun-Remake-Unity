@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour
                     HighScoreElement highScoreElement = new HighScoreElement
                     {
                         // TODO : Faire une comparaison pour voir si le pseudo est renseigné
-                        playerName = "Anonymous",
+                        playerName = SettingsUI.instance.GetPseudo(),
                         score = highScore,
                         levelSelection = LevelSelection.currentLevel
                        

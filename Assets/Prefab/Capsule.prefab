@@ -131,10 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 505c0ac2102c7f84aba225a31805b685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 10
-  laneDistance: 3.66
-  jumpForce: 6
-  crounchSpeed: 3
+  finishUI: {fileID: 0}
+  _gravity: 0
 --- !u!114 &2827079464232987914
 MonoBehaviour:
   m_ObjectHideFlags: 0

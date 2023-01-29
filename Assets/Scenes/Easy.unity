@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highScores:
-    highScoreElements: []
+    highScoresList: []
 --- !u!1 &426133257 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1591059474686186491, guid: 6e6a2c7a9a499e64495e949dc0a0800a, type: 3}
@@ -750,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Height
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2827079464232987914, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2827079464232987915, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: gravity
       value: 30
@@ -781,6 +785,10 @@ PrefabInstance:
     - target: {fileID: 2827079464232987957, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: m_Height
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2827079464232987957, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827079464232987957, guid: fe7aaad9a587c3745a7343a43f570c65, type: 3}
       propertyPath: m_Direction

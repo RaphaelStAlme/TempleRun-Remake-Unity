@@ -17,6 +17,9 @@ public class HighScoreManager : MonoBehaviour
         saveFile = $"{Application.persistentDataPath}/highscores.json";
     }
 
+    public delegate void OnHighScoreListChanged(HighScoreElements highScoreElements);
+    public static event OnHighScoreListChanged onHighScoreListChanged;
+
     private void Start()
     {
         LoadHighScores();
@@ -29,16 +32,30 @@ public class HighScoreManager : MonoBehaviour
         if(File.Exists(saveFile)) {
             Debug.Log(saveFile);
             string json = File.ReadAllText(saveFile);
-            highScores = JsonUtility.FromJson<HighScoreElements>(json); 
+            var highScoreNonSorted = JsonUtility.FromJson<HighScoreElements>(json);
+            highScoreNonSorted.highScoresList.Sort((highScore1, highScore2) => highScore1.score.CompareTo(highScore2.score));
+            highScoreNonSorted.highScoresList.Reverse();
+            highScores = highScoreNonSorted;
+        }
+
+        Debug.Log(highScores.highScoresList);
+
+        if(onHighScoreListChanged != null) {
+            onHighScoreListChanged.Invoke(highScores);
         }
     }
 
     public void SaveHighScore(HighScoreElement highScore)
     {
         SaveTemporaryHighScore(highScore.score);
-        highScores.highScoreElements.Add(highScore);
+        highScores.highScoresList.Add(highScore);
         var jsonList = JsonUtility.ToJson(highScores);
         File.WriteAllText(saveFile, jsonList);
+
+        if (onHighScoreListChanged != null)
+        {
+            onHighScoreListChanged.Invoke(highScores);
+        }
     }
 
     public int GetTemporaryHighScore()
@@ -60,7 +77,7 @@ public class HighScoreManager : MonoBehaviour
 [Serializable]
 public class HighScoreElements
 {
-    public List<HighScoreElement> highScoreElements;
+    public List<HighScoreElement> highScoresList;
 }
 
 [Serializable]

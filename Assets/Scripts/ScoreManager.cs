@@ -35,7 +35,7 @@ public class ScoreManager : MonoBehaviour
         {
             if ((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
             {
-                var highScore = HighScoreRegister.instance.GetTemporaryHighScore();
+                var highScore = HighScoreHandler.instance.GetTemporaryHighScore();
                 highScoreTxt.text = highScore.ToString();
                 if (score > highScore)
                 {
@@ -48,7 +48,7 @@ public class ScoreManager : MonoBehaviour
                         levelSelection = LevelSelection.currentLevel
 
                     };
-                    HighScoreRegister.instance.SaveHighScore(highScoreElement);
+                    HighScoreHandler.instance.SaveHighScore(highScoreElement);
                     highScoreSaved = true;
 
                 }

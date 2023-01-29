@@ -65,7 +65,7 @@ public class SettingsUI : MonoBehaviour
 
     public void ResetScores()
     {
-        HighScoreRegister.instance.ResetScores();
+        HighScoreHandler.instance.ResetScores();
     }
 
     public void ShowPanel()

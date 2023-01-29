@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class HighScoreRegister : MonoBehaviour
+public class HighScoreHandler : MonoBehaviour
 {
-    public static HighScoreRegister instance;
+    public static HighScoreHandler instance;
 
     public HighScoreElements highScores = new HighScoreElements();
     private String saveFile;
@@ -30,15 +30,12 @@ public class HighScoreRegister : MonoBehaviour
     {
         if (File.Exists(saveFile))
         {
-            Debug.Log(saveFile);
             string json = File.ReadAllText(saveFile);
             var highScoreNonSorted = JsonUtility.FromJson<HighScoreElements>(json);
             highScoreNonSorted.highScoresList.Sort((highScore1, highScore2) => highScore1.score.CompareTo(highScore2.score));
             highScoreNonSorted.highScoresList.Reverse();
             highScores = highScoreNonSorted;
         }
-
-        Debug.Log(highScores.highScoresList);
 
         if (onHighScoreListChanged != null)
         {

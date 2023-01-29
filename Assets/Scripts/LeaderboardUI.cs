@@ -12,12 +12,12 @@ public class LeaderboardUI : MonoBehaviour
 
     private void OnEnable()
     {
-        HighScoreRegister.onHighScoreListChanged += UpdateUI;
+        HighScoreHandler.onHighScoreListChanged += UpdateUI;
     }
 
     private void OnDisable()
     {
-        HighScoreRegister.onHighScoreListChanged -= UpdateUI;
+        HighScoreHandler.onHighScoreListChanged -= UpdateUI;
     }
 
     public void ShowPanel()

@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {
         ///Revoir pour la réinitialisation de  la vie pour l'appliquer dans le script du joueur
         panelUI.SetActive(false);
-        HighScoreRegister.instance.ResetTemporaryHighScore();
+        HighScoreHandler.instance.ResetTemporaryHighScore();
         Resume();
         SceneManager.LoadScene("Menu");
     }

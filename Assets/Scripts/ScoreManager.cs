@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -17,7 +15,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this; 
+        instance = this;
     }
 
     // Start is called before the first frame update
@@ -29,29 +27,30 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
-        if(Time.timeScale != 0)
+        if (Time.timeScale != 0)
         {
             AddPoints(pointIncreasedPerSecond * Time.fixedDeltaTime);
-        } else
+        }
+        else
         {
-            if((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
+            if ((GameManager.playerIsDied || GameManager.playerReachedFinishLine) && !highScoreSaved)
             {
-                var highScore = HighScoreManager.instance.GetTemporaryHighScore();
+                var highScore = HighScoreRegister.instance.GetTemporaryHighScore();
                 highScoreTxt.text = highScore.ToString();
                 if (score > highScore)
                 {
-                    highScore = (int) score;
+                    highScore = (int)score;
                     HighScoreElement highScoreElement = new HighScoreElement
                     {
                         // TODO : Faire une comparaison pour voir si le pseudo est renseigné
                         playerName = SettingsUI.instance.GetPseudo(),
                         score = highScore,
                         levelSelection = LevelSelection.currentLevel
-                       
+
                     };
-                    HighScoreManager.instance.SaveHighScore(highScoreElement);
+                    HighScoreRegister.instance.SaveHighScore(highScoreElement);
                     highScoreSaved = true;
-                    
+
                 }
             }
         }

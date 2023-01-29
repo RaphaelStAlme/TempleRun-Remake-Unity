@@ -1,16 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class SettingsUI : MonoBehaviour
 {
     public static SettingsUI instance;
-    
+
     [SerializeField] GameObject panel;
     [SerializeField] TMP_InputField playerNameField;
     [SerializeField] InputActionAsset inputActionAsset;
@@ -50,7 +47,7 @@ public class SettingsUI : MonoBehaviour
     public void GetControlSchemes()
     {
         inputControlSchemes = inputActionAsset.controlSchemes.ToList();
-        foreach(var controlScheme in inputControlSchemes)
+        foreach (var controlScheme in inputControlSchemes)
         {
             dropdown.options.Add(new TMP_Dropdown.OptionData(controlScheme.name));
         }
@@ -68,7 +65,7 @@ public class SettingsUI : MonoBehaviour
 
     public void ResetScores()
     {
-        HighScoreManager.instance.ResetScores();
+        HighScoreRegister.instance.ResetScores();
     }
 
     public void ShowPanel()

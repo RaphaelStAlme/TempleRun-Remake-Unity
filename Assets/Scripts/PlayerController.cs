@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
                 _forwardSpeed = 30;
                 break;
         }
-       
+
     }
 
     // Update is called once per frame

@@ -1,7 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -64,7 +61,8 @@ public class TileManager : MonoBehaviour
         zSpawnedTiles += generalTileLength;
     }
 
-    private void SpawnFinishTile() {
+    private void SpawnFinishTile()
+    {
         GameObject cloneFinishTile = Instantiate(finishPrefab, transform.forward * zSpawnedTiles, transform.rotation);
         activeTiles.Add(cloneFinishTile);
     }

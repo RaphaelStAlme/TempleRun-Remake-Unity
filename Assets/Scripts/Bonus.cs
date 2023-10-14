@@ -1,9 +1,13 @@
+using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 
 public class Bonus : MonoBehaviour
 {
     [SerializeField] Material[] bonusMaterials;
     [SerializeField] BonusType bonusType;
+
+    private CollisionSoundEffect collisionSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,9 @@ public class Bonus : MonoBehaviour
                     ScoreManager.instance.AddPoints(-500);
                     break;
             }
+
+            collisionSoundEffect = other.GetComponent<CollisionSoundEffect>();
+            collisionSoundEffect.PlayAndPause();
             Destroy(gameObject);
         }
     }

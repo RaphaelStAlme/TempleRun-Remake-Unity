@@ -197,3 +197,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 8c76d3a862d37544087075554ff7fe2f, type: 3}
   volumeModifier: 1
+  audioSource: {fileID: 0}

@@ -18,14 +18,13 @@ public class Bonus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(20 * Time.deltaTime, 0, 0);
+        transform.Rotate(80 * Time.deltaTime, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log(bonusType);
             switch (bonusType)
             {
                 case BonusType.Coin:

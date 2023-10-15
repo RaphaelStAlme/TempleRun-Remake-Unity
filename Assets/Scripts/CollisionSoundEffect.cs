@@ -22,7 +22,6 @@ namespace Assets.Scripts
         {
             audioSource.clip = audioClip;
             audioSource.volume = volumeModifier;
-
         }
 
         // Update is called once per frame
@@ -33,13 +32,7 @@ namespace Assets.Scripts
 
         public void PlayAndPause()
         {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            } else
-            {
-                audioSource.Pause();
-            }
+           audioSource.Play();
         }
     }
 }

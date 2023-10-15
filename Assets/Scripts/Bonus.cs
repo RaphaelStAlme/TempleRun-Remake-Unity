@@ -44,7 +44,6 @@ public class Bonus : MonoBehaviour
                     ScoreManager.instance.AddPoints(-500);
                     break;
             }
-
             collisionSoundEffect = other.GetComponent<CollisionSoundEffect>();
             collisionSoundEffect.PlayAndPause();
             Destroy(gameObject);
@@ -73,6 +72,9 @@ public class Bonus : MonoBehaviour
                 break;
             case 5:
                 bonusType = BonusType.DarkDiamond;
+                break;
+            default:
+                gameObject.SetActive(false);
                 break;
         }
     }

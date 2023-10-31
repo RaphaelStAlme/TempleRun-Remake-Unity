@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hard.unity
     guid: 393d716487024f34683d51aef120768d
+  - enabled: 1
+    path: Assets/Scenes/Infinite.unity
+    guid: bac812782c7f84145ba1c3fed3643798
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 977d331840a32ce49a2033133b30ffa3, type: 2}

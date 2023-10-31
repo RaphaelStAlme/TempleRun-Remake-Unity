@@ -170,7 +170,7 @@ MonoBehaviour:
     m_ActionId: f50b70e6-8841-416b-9208-ab372de5f9e2
     m_ActionName: Player/Right[/Keyboard/d,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: WASD(ZQSD)
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

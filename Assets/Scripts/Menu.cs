@@ -6,6 +6,12 @@ public class Menu : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject scorePanel;
 
+    private void Start()
+    {
+        var audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
+        audioSource.volume = SettingsUI.instance.GetVolume();
+    }
+
     public void SetLevelSelectorPanel()
     {
         levelSelectorPanel.SetActive(true);

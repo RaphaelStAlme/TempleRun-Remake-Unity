@@ -1,9 +1,13 @@
+using Assets.Scripts;
+using System.Collections;
 using UnityEngine;
 
 public class Bonus : MonoBehaviour
 {
     [SerializeField] Material[] bonusMaterials;
     [SerializeField] BonusType bonusType;
+
+    private CollisionSoundEffect collisionSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -14,14 +18,13 @@ public class Bonus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(20 * Time.deltaTime, 0, 0);
+        transform.Rotate(80 * Time.deltaTime, 0, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            Debug.Log(bonusType);
             switch (bonusType)
             {
                 case BonusType.Coin:
@@ -40,6 +43,8 @@ public class Bonus : MonoBehaviour
                     ScoreManager.instance.AddPoints(-500);
                     break;
             }
+            collisionSoundEffect = other.GetComponent<CollisionSoundEffect>();
+            collisionSoundEffect.PlayAndPause();
             Destroy(gameObject);
         }
     }
@@ -66,6 +71,9 @@ public class Bonus : MonoBehaviour
                 break;
             case 5:
                 bonusType = BonusType.DarkDiamond;
+                break;
+            default:
+                gameObject.SetActive(false);
                 break;
         }
     }

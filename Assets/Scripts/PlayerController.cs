@@ -69,9 +69,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (LevelSelection.currentLevel == LevelSelector.Infinite)
-        {
-            
-            Debug.Log(_forwardSpeed);
+        { 
             _forwardSpeed = (float)(_startSpeed + (int)(trackedDistance / 100) * 0.5);
             trackedDistance += _forwardSpeed * Time.deltaTime;
         } else
